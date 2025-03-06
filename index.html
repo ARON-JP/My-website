@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kqlemのプロフィール</title>
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: #00796b;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .profile-links a {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            color: #004d40;
+            text-decoration: none;
+            background-color: rgba(0, 77, 64, 0.1);
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .profile-links a:hover {
+            background-color: rgba(0, 77, 64, 0.2);
+            transform: scale(1.05);
+        }
+        .profile-links img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+        .profile .description {
+            margin-top: 10px;
+            color: #00796b;
+        }
+        .profile .details {
+            font-size: 12px;
+            color: #004d40;
+            margin-top: 5px;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+    <script>
+        function updateTime() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateTime, 1000);
+        window.onload = updateTime;
+
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            audio.play();
+        };
+    </script>
+</head>
+<body>
+    <div class="header" id="clock">00:00</div>
+    <div class="container">
+        <h1>かれむ</h1>
+        <div class="profile">
+            <img src="icon.webp" alt="Profile Icon">
+            <div class="description">
+                こんにちは、Kqlemです、色んなゲームをしてます
+            </div>
+            <div class="details">
+                📌愛知県 ❤ゲーム 🧍中学生
+            </div>
+        </div>
+        <div class="profile-links">
+            <a href="https://osu.ppy.sh/users/32840486" target="_blank">
+                <img src="osu.png" alt="Osu! Icon">Osu!
+            </a>
+            <a href="https://discord.gg/w98xTtnskb" target="_blank">
+                <img src="discord.png" alt="Discord Icon">Discord鯖
+            </a>
+            <a href="https://www.youtube.com/@%E3%81%8B%E3%82%8C%E3%82%80" target="_blank">
+                <img src="youtube.png" alt="YouTube Icon">YouTube
+            </a>
+        </div>
+    </div>
+    <audio id="background-music" autoplay loop src="bgm.mp3"></audio>
+</body>
+</html>
