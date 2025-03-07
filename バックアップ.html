@@ -12,7 +12,10 @@
             background-size: cover;
             background-attachment: fixed;
             cursor: url('custom_cursor.png'), auto;
-            overflow: hidden;
+            overflow: auto;
+            user-select: none;
+            min-width: 320px;
+            min-height: 568px;
         }
 
         .header {
@@ -53,6 +56,7 @@
             transition: background-color 0.3s, transform 0.3s;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .profile-links a::after {
@@ -115,12 +119,12 @@
 
         .particle {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 8px; /* 大きくしました */
+            height: 8px; /* 大きくしました */
             background-color: #00bcd4;
             border-radius: 50%;
             pointer-events: none;
-            animation: particle 1s ease-out forwards;
+            animation: particle 1.5s ease-out forwards; /* アニメーション速度を変更 */
         }
 
         .line {
@@ -143,8 +147,8 @@
 
         .water-particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 6px; /* 大きくしました */
+            height: 6px; /* 大きくしました */
             background: rgba(0, 77, 64, 0.5);
             border-radius: 50%;
             pointer-events: none;
@@ -225,8 +229,11 @@
     </script>
 </head>
 <body>
+    <audio id="background-music" autoplay loop>
+        <source src="background-music.mp3" type="audio/mp3">
+    </audio>
     <div class="header" id="clock">00:00</div>
-    <div class="update" id="update">最終更新日: 2025/03/06/22:43</div>
+    <div class="update" id="update">最終更新日: 2025/03/07/13:22</div>
     <div class="container">
         <h1>かれむ</h1>
         <div class="profile">
@@ -249,7 +256,7 @@
                 <img src="discord.png" alt="Discord Icon">Discord鯖
             </a>
             <a href="https://open.spotify.com/user/31adf3muzoqcazj4t6yyjddgkh5m?si=2c8745bcda1a4c46" target="_blank">
-                <img src="spotify.png" alt="YouTube Icon">Spotify
+                <img src="spotify.png" alt="Spotify Icon">Spotify
             </a>
         </div>
         <div class="box">
@@ -259,9 +266,14 @@
 理由としては、身内とのやり取りが減ったこと、自分が遊びたいゲームができたことです。
 
 【更新】
-パーティクル、リンクにカーソルを合わせたときにエフェクトを出すようにしました。
+スマホでスクロールできない問題を修正しました。
+ガクガクしてしてしまう問題を解決しました。
 
 【更新履歴】
+選択などをできないようにしました、細かな調整をおこないました。
+
+パーティクル、リンクにカーソルを合わせたときにエフェクトを出すようにしました。
+
 最終更新日時を追加しました。
 
 お知らせ、更新欄を追加しました。
