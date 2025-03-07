@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kqlemのプロフィール</title>
+    <!-- アイコンの指定 -->
+    <link rel="icon" href="icon.webp" type="image/webp">
+    <link rel="shortcut icon" href="icon.webp" type="image/webp">
+    <meta name="msapplication-square70x70logo" content="icon.webp"/>
+    <meta name="msapplication-square150x150logo" content="icon.webp"/>
+    <meta name="msapplication-square310x310logo" content="icon.webp"/>
+    <meta name="msapplication-wide310x150logo" content="icon.webp"/>
+    <meta name="msapplication-TileColor" content="#0000ff"/>
+    
     <style>
         body {
             background-color: #e0f7fa;
@@ -16,6 +25,7 @@
             user-select: none;
             min-width: 320px;
             min-height: 568px;
+            scroll-behavior: smooth; /* スクロールの滑らかさを改善 */
         }
 
         .header {
@@ -119,12 +129,12 @@
 
         .particle {
             position: absolute;
-            width: 8px; /* 大きくしました */
-            height: 8px; /* 大きくしました */
+            width: 8px;
+            height: 8px;
             background-color: #00bcd4;
             border-radius: 50%;
             pointer-events: none;
-            animation: particle 1.5s ease-out forwards; /* アニメーション速度を変更 */
+            animation: particle 1.5s ease-out forwards;
         }
 
         .line {
@@ -147,8 +157,8 @@
 
         .water-particle {
             position: absolute;
-            width: 6px; /* 大きくしました */
-            height: 6px; /* 大きくしました */
+            width: 6px;
+            height: 6px;
             background: rgba(0, 77, 64, 0.5);
             border-radius: 50%;
             pointer-events: none;
@@ -165,61 +175,57 @@
             display: none;
         }
     </style>
-        <script>
-            function updateTime() {
-                const clock = document.getElementById('clock');
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                clock.textContent = `${hours}:${minutes}`;
-            }
-            setInterval(updateTime, 1000);
-            window.onload = updateTime;
-    
-            window.onload = function() {
-                const audio = document.getElementById('background-music');
-                audio.play();
-                setTimeout(function() {
-                    document.getElementById('welcome').style.display = 'none';
-                }, 3000); /* フェードアウト完了後にWelcomeテキストを非表示に */
-            };
-    
-            document.addEventListener('click', function(event) {
+    <script>
+        function updateTime() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}`;
+        }
+        setInterval(updateTime, 1000);
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            audio.play();
+            setTimeout(function() {
+                document.getElementById('welcome').style.display = 'none';
+            }, 3000);
+        };
+
+        document.addEventListener('click', function(event) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${event.clientX + window.scrollX}px`;
+            particle.style.top = `${event.clientY + window.scrollY}px`;
+            document.body.appendChild(particle);
+            setTimeout(() => {
+                document.body.removeChild(particle);
+            }, 1000);
+        });
+
+        let isDragging = false;
+        document.addEventListener('mousedown', function(event) {
+            isDragging = true;
+        });
+
+        document.addEventListener('mousemove', function(event) {
+            if (isDragging) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
-                particle.style.left = `${event.clientX}px`;
-                particle.style.top = `${event.clientY}px`;
+                particle.style.left = `${event.clientX + window.scrollX}px`;
+                particle.style.top = `${event.clientY + window.scrollY}px`;
                 document.body.appendChild(particle);
                 setTimeout(() => {
                     document.body.removeChild(particle);
                 }, 1000);
-            });
-    
-            let isDragging = false;
-            let line;
-    
-            document.addEventListener('mousedown', function(event) {
-                isDragging = true;
-            });
-    
-            document.addEventListener('mousemove', function(event) {
-                if (isDragging) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('particle');
-                    particle.style.left = `${event.clientX}px`;
-                    particle.style.top = `${event.clientY}px`;
-                    document.body.appendChild(particle);
-                    setTimeout(() => {
-                        document.body.removeChild(particle);
-                    }, 1000);
-                }
-            });
-    
-            document.addEventListener('mouseup', function() {
-                isDragging = false;
-            });
-    
-            setInterval(function() {
+            }
+        });
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+        });
+
+        setInterval(function() {
             const waterParticle = document.createElement('div');
             waterParticle.classList.add('water-particle');
             waterParticle.style.left = `${Math.random() * window.innerWidth}px`;
@@ -236,7 +242,7 @@
         <source src="background-music.mp3" type="audio/mp3">
     </audio>
     <div class="header" id="clock">00:00</div>
-    <div class="update" id="update">最終更新日: 2025/03/07/13:31</div>
+    <div class="update" id="update">最終更新日: 2025/03/07/13:42</div>
     <div class="container">
         <h1>かれむ</h1>
         <div class="profile">
@@ -272,9 +278,13 @@
 理由としては、身内とのやり取りが減ったこと、自分が遊びたいゲームができたことです。
 
 【更新】
-X（Twitter）を追加しました。
+サイトのアイコンが表示されない問題を修正しました。
 
 【更新履歴】
+スクロールをするとパーティクルの位置がズレてしまう問題を修正しました。
+
+X（Twitter）を追加しました。
+
 スマホでスクロールできない問題を修正しました。
 ガクガクしてしてしまう問題を解決しました。
 
